@@ -80,22 +80,6 @@ public partial class MainWindow
         }
     }
 
-    private async void ConnectionTree_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-    {
-        try
-        {
-            if (_viewModel.SelectedProfile is not null)
-            {
-                await _viewModel.ConnectCommand.ExecuteAsync(null);
-                e.Handled = true;
-            }
-        }
-        catch (Exception ex)
-        {
-            _viewModel.StatusText = $"{TranslationSource.Get("ErrorOccurred")}: {ex.Message}";
-        }
-    }
-
     private void ConnectionTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
     {
         if (e.NewValue is ConnectionProfile profile)

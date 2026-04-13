@@ -18,7 +18,6 @@
         <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding EditConnectionCommand}" />
         <KeyBinding Key="Delete" Command="{Binding ConnectionList.DeleteSelectedCommand}" />
         <KeyBinding Key="F" Modifiers="Ctrl" Command="{Binding FocusSearchCommand}" />
-        <KeyBinding Key="Return" Command="{Binding ConnectCommand}" />
     </Window.InputBindings>
 
     <Window.Resources>
@@ -98,7 +97,6 @@
                     <TreeView Grid.Row="1" x:Name="ConnectionTree" Margin="4,0,4,4"
                               ItemsSource="{Binding ConnectionList.Groups}"
                               SelectedItemChanged="ConnectionTree_SelectedItemChanged"
-                              MouseDoubleClick="ConnectionTree_MouseDoubleClick"
                               BorderThickness="0" Background="Transparent">
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Profiles}">
