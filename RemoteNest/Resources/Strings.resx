@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="xml:space" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AppTitle" xml:space="preserve"><value>RemoteNest — RDP Connection Manager</value></data>
+  <data name="AppSubtitle" xml:space="preserve"><value>RDP Connection Manager</value></data>
+  <data name="EditorTitle" xml:space="preserve"><value>Connection Editor</value></data>
+  <data name="Ready" xml:space="preserve"><value>Ready</value></data>
+  <data name="Connections" xml:space="preserve"><value>Connections</value></data>
+  <data name="New" xml:space="preserve"><value>New</value></data>
+  <data name="Import" xml:space="preserve"><value>Import</value></data>
+  <data name="Export" xml:space="preserve"><value>Export</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Search by name or host...</value></data>
+  <data name="TotalConnections" xml:space="preserve"><value>Total Connections: </value></data>
+  <data name="RecentConnections" xml:space="preserve"><value>Recent Connections</value></data>
+  <data name="NoRecentConnections" xml:space="preserve"><value>No recent connections yet.</value></data>
+  <data name="Group" xml:space="preserve"><value>Group</value></data>
+  <data name="Connect" xml:space="preserve"><value>Connect</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Duplicate" xml:space="preserve"><value>Duplicate</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Username" xml:space="preserve"><value>Username</value></data>
+  <data name="UsernameLabel" xml:space="preserve"><value>Username:</value></data>
+  <data name="DomainLabel" xml:space="preserve"><value>Domain:</value></data>
+  <data name="DisplayLabel" xml:space="preserve"><value>Display:</value></data>
+  <data name="FullScreenLabel" xml:space="preserve"><value>Full Screen:</value></data>
+  <data name="NlaLabel" xml:space="preserve"><value>NLA:</value></data>
+  <data name="ConnectionsLabel" xml:space="preserve"><value>Connections:</value></data>
+  <data name="LastUsedLabel" xml:space="preserve"><value>Last Used:</value></data>
+  <data name="Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="General" xml:space="preserve"><value>General</value></data>
+  <data name="Display" xml:space="preserve"><value>Display</value></data>
+  <data name="Resources" xml:space="preserve"><value>Resources</value></data>
+  <data name="NameRequired" xml:space="preserve"><value>Name *</value></data>
+  <data name="NamePlaceholder" xml:space="preserve"><value>e.g. Production Server</value></data>
+  <data name="GroupLabel" xml:space="preserve"><value>Group</value></data>
+  <data name="GroupPlaceholder" xml:space="preserve"><value>e.g. Production</value></data>
+  <data name="HostRequired" xml:space="preserve"><value>Host *</value></data>
+  <data name="HostPlaceholder" xml:space="preserve"><value>IP or hostname</value></data>
+  <data name="Port" xml:space="preserve"><value>Port</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Domain" xml:space="preserve"><value>Domain</value></data>
+  <data name="ScreenWidth" xml:space="preserve"><value>Screen Width</value></data>
+  <data name="ScreenHeight" xml:space="preserve"><value>Screen Height</value></data>
+  <data name="FullScreen" xml:space="preserve"><value>Full Screen</value></data>
+  <data name="ColorDepth" xml:space="preserve"><value>Color Depth</value></data>
+  <data name="ClipboardRedirection" xml:space="preserve"><value>Clipboard Redirection</value></data>
+  <data name="DriveRedirection" xml:space="preserve"><value>Drive Redirection</value></data>
+  <data name="PrinterRedirection" xml:space="preserve"><value>Printer Redirection</value></data>
+  <data name="AudioRedirection" xml:space="preserve"><value>Audio Redirection (Local)</value></data>
+  <data name="NlaToggle" xml:space="preserve"><value>Network Level Authentication (NLA)</value></data>
+  <data name="TestConnection" xml:space="preserve"><value>Test Connection</value></data>
+  <data name="Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="AddNewConnection" xml:space="preserve"><value>Add new connection</value></data>
+  <data name="Ungrouped" xml:space="preserve"><value>Ungrouped</value></data>
+  <data name="ProfileCopySuffix" xml:space="preserve"><value>(copy)</value></data>
+  <data name="ConnectedStatus" xml:space="preserve"><value>Connected to {0} at {1}</value></data>
+  <data name="ExportedStatus" xml:space="preserve"><value>Exported {0} profiles to {1}</value></data>
+  <data name="ImportedStatus" xml:space="preserve"><value>Imported {0} profile(s) from {1}</value></data>
+  <data name="StartupError" xml:space="preserve"><value>Startup Error</value></data>
+  <data name="StartupErrorMessage" xml:space="preserve"><value>Failed to start RemoteNest:</value></data>
+  <data name="InvalidJsonFormat" xml:space="preserve"><value>Invalid JSON format.</value></data>
+  <data name="ProfileNotFound" xml:space="preserve"><value>Profile {0} not found.</value></data>
+  <data name="FailedReadRdp" xml:space="preserve"><value>Failed to read RDP file: {0}</value></data>
+  <data name="RdpNoHost" xml:space="preserve"><value>RDP file does not contain a valid host address.</value></data>
+  <data name="FailedStartMstsc" xml:space="preserve"><value>Failed to start mstsc.exe. Ensure Remote Desktop is available.</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="JsonFilter" xml:space="preserve"><value>JSON Files (*.json)</value></data>
+  <data name="DefaultExportName" xml:space="preserve"><value>remotenest-export.json</value></data>
+  <data name="ErrorOccurred" xml:space="preserve"><value>An error occurred</value></data>
+  <data name="ConnectionFailed" xml:space="preserve"><value>Connection failed</value></data>
+  <data name="Never" xml:space="preserve"><value>Never</value></data>
+  <data name="Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="No" xml:space="preserve"><value>No</value></data>
+</root>

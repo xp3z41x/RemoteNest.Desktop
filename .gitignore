@@ -1,0 +1,15 @@
+bin/
+obj/
+publish/
+output/
+*.user
+*.suo
+.vs/
+.idea/
+.claude/
+*.db
+*.db-shm
+*.db-wal
+Thumbs.db
+Desktop.ini
+.DS_Store

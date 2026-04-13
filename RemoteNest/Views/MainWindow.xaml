@@ -1,0 +1,314 @@
+<Window x:Class="RemoteNest.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:local="clr-namespace:RemoteNest.Views"
+        xmlns:converters="clr-namespace:RemoteNest.Converters"
+        xmlns:loc="clr-namespace:RemoteNest.Localization"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Icon="/Assets/app.ico"
+        Title="{loc:Str AppTitle}"
+        Width="1100" Height="700"
+        MinWidth="800" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding AddConnectionCommand}" />
+        <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding EditConnectionCommand}" />
+        <KeyBinding Key="Delete" Command="{Binding ConnectionList.DeleteSelectedCommand}" />
+        <KeyBinding Key="F" Modifiers="Ctrl" Command="{Binding FocusSearchCommand}" />
+        <KeyBinding Key="Return" Command="{Binding ConnectCommand}" />
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVis" />
+        <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVis" />
+        <converters:NullToVisibilityConverter x:Key="NullToVis" />
+        <converters:NullToVisibilityConverter x:Key="NotNullToVis" Invert="True" />
+        <converters:DateTimeToStringConverter x:Key="DateToStr" />
+        <converters:CountToVisibilityConverter x:Key="CountToVis" />
+        <converters:BoolToLocalizedYesNoConverter x:Key="BoolToYesNo" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar -->
+        <Grid Grid.Row="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="8,6"
+                        VerticalAlignment="Center">
+                <Button Command="{Binding AddConnectionCommand}" Margin="0,0,4,0"
+                        ToolTip="{loc:Str AddNewConnection}" Padding="12,6" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets"
+                                   VerticalAlignment="Center" Margin="0,0,6,0" />
+                        <TextBlock Text="{loc:Str New}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <TextBox x:Name="SearchBox" Grid.Column="1" Margin="8,6"
+                     VerticalAlignment="Center"
+                     ui:ControlHelper.PlaceholderText="{loc:Str SearchPlaceholder}"
+                     Text="{Binding ConnectionList.SearchText, UpdateSourceTrigger=PropertyChanged, Delay=300}" />
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="8,6"
+                        VerticalAlignment="Center">
+                <Button Content="{loc:Str Import}" Command="{Binding ImportProfilesCommand}"
+                        Margin="0,0,4,0" Padding="12,6" VerticalAlignment="Center" />
+                <Button Content="{loc:Str Export}" Command="{Binding ExportProfilesCommand}"
+                        Margin="0,0,4,0" Padding="12,6" VerticalAlignment="Center" />
+                <ComboBox x:Name="LanguageComboBox" MinWidth="180" Padding="8,6"
+                          VerticalAlignment="Center"
+                          SelectionChanged="LanguageComboBox_SelectionChanged" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Main Content: Left panel + Right panel -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260" MinWidth="200" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel: Connection Tree -->
+            <Border Grid.Column="0" BorderThickness="0,0,1,0"
+                    BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="{loc:Str Connections}" FontWeight="SemiBold" FontSize="14"
+                               Margin="12,10,12,6" />
+
+                    <TreeView Grid.Row="1" x:Name="ConnectionTree" Margin="4,0,4,4"
+                              ItemsSource="{Binding ConnectionList.Groups}"
+                              SelectedItemChanged="ConnectionTree_SelectedItemChanged"
+                              MouseDoubleClick="ConnectionTree_MouseDoubleClick"
+                              BorderThickness="0" Background="Transparent">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Profiles}">
+                                <!-- Group header -->
+                                <StackPanel Orientation="Horizontal" Margin="0,4">
+                                    <TextBlock Text="&#xE8B7;" FontFamily="Segoe MDL2 Assets"
+                                               FontSize="14" VerticalAlignment="Center" Margin="0,0,6,0"
+                                               Foreground="{DynamicResource SystemControlForegroundAccentBrush}" />
+                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="13" />
+                                    <TextBlock Text="{Binding Profiles.Count, StringFormat=' ({0})'}"
+                                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                               FontSize="12" VerticalAlignment="Center" Margin="2,0,0,0" />
+                                </StackPanel>
+
+                                <!-- Profile item -->
+                                <HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="4,6" Cursor="Hand"
+                                                MouseLeftButtonDown="ProfileItem_MouseDown"
+                                                Background="Transparent">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="&#xE839;" FontFamily="Segoe MDL2 Assets"
+                                                           FontSize="14" VerticalAlignment="Center"
+                                                           Margin="0,0,8,0"
+                                                           Foreground="{DynamicResource SystemControlForegroundBaseMediumHighBrush}" />
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Name}" FontSize="13" />
+                                                    <TextBlock Text="{Binding Host}" FontSize="11"
+                                                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </HierarchicalDataTemplate.ItemTemplate>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                    </TreeView>
+                </Grid>
+            </Border>
+
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch" Background="Transparent" />
+
+            <!-- Right Panel -->
+            <Grid Grid.Column="2" Margin="16">
+                <!-- Dashboard (when nothing selected) -->
+                <StackPanel Visibility="{Binding SelectedProfile, Converter={StaticResource NullToVis}}">
+                    <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" FontSize="48"
+                               HorizontalAlignment="Center" Margin="0,40,0,16"
+                               Foreground="{DynamicResource SystemControlForegroundAccentBrush}" />
+                    <TextBlock Text="RemoteNest" FontSize="28" FontWeight="Light"
+                               HorizontalAlignment="Center" Margin="0,0,0,4" />
+                    <TextBlock Text="{loc:Str AppSubtitle}" FontSize="14"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                               Margin="0,0,0,30" />
+
+                    <Border Background="{DynamicResource SystemControlBackgroundChromeLowBrush}"
+                            CornerRadius="8" Padding="20" HorizontalAlignment="Center" MinWidth="300">
+                        <StackPanel>
+                            <TextBlock FontSize="14" FontWeight="SemiBold" Margin="0,0,0,12">
+                                <Run Text="{loc:Str TotalConnections}" />
+                                <Run Text="{Binding TotalConnections, Mode=OneWay}" FontWeight="Bold" />
+                            </TextBlock>
+
+                            <TextBlock Text="{loc:Str RecentConnections}" FontSize="13" FontWeight="SemiBold"
+                                       Margin="0,0,0,8" />
+                            <ItemsControl ItemsSource="{Binding RecentConnections}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="6,4" Margin="0,2" Background="Transparent"
+                                                Cursor="Hand" MouseLeftButtonUp="RecentItem_Click">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0">
+                                                    <Run Text="{Binding Name, Mode=OneWay}" FontWeight="SemiBold" />
+                                                    <Run Text=" — " />
+                                                    <Run Text="{Binding Host, Mode=OneWay}"
+                                                         Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                                                </TextBlock>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding LastConnectedAt, Converter={StaticResource DateToStr}}"
+                                                           Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                                           FontSize="11" VerticalAlignment="Center" Margin="12,0,0,0" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Text="{loc:Str NoRecentConnections}"
+                                       Visibility="{Binding RecentConnections.Count, Converter={StaticResource CountToVis}}"
+                                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                       FontStyle="Italic" Margin="0,4,0,0" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Profile Details (when selected) -->
+                <Border Visibility="{Binding SelectedProfile, Converter={StaticResource NotNullToVis}}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel DataContext="{Binding SelectedProfile}" MaxWidth="600">
+                            <TextBlock Text="{Binding Name}" FontSize="24" FontWeight="SemiBold"
+                                       Margin="0,0,0,4" />
+                            <TextBlock FontSize="13"
+                                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                       Margin="0,0,0,20">
+                                <Run Text="{Binding Host, Mode=OneWay}" />
+                                <Run Text=":" />
+                                <Run Text="{Binding Port, Mode=OneWay}" />
+                                <Run Text=" | " />
+                                <Run Text="{loc:Str Group}" />
+                                <Run Text=": " />
+                                <Run Text="{Binding Group, Mode=OneWay}" />
+                            </TextBlock>
+
+                            <Button Command="{Binding DataContext.ConnectCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    HorizontalAlignment="Left" Padding="24,10"
+                                    Style="{StaticResource AccentButtonStyle}" FontSize="14">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xE768;" FontFamily="Segoe MDL2 Assets"
+                                               VerticalAlignment="Center" Margin="0,0,8,0" />
+                                    <TextBlock Text="{loc:Str Connect}" />
+                                </StackPanel>
+                            </Button>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,20">
+                                <Button Content="{loc:Str Edit}"
+                                        Command="{Binding DataContext.EditConnectionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                        Margin="0,0,8,0" Padding="16,6" />
+                                <Button Content="{loc:Str Duplicate}"
+                                        Command="{Binding DataContext.ConnectionList.DuplicateSelectedCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                        Margin="0,0,8,0" Padding="16,6" />
+                                <Button Content="{loc:Str Delete}"
+                                        Command="{Binding DataContext.ConnectionList.DeleteSelectedCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                        Padding="16,6"
+                                        Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" />
+                            </StackPanel>
+
+                            <Border Background="{DynamicResource SystemControlBackgroundChromeLowBrush}"
+                                    CornerRadius="6" Padding="16" Margin="0,0,0,12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{loc:Str UsernameLabel}" FontWeight="SemiBold" Margin="0,0,16,6" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Username}" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{loc:Str DomainLabel}" FontWeight="SemiBold" Margin="0,0,16,6" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Domain}" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{loc:Str DisplayLabel}" FontWeight="SemiBold" Margin="0,0,16,6" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,0,0,6">
+                                        <Run Text="{Binding ScreenWidth, Mode=OneWay}" />
+                                        <Run Text="x" />
+                                        <Run Text="{Binding ScreenHeight, Mode=OneWay}" />
+                                        <Run Text=" (" />
+                                        <Run Text="{Binding ColorDepth, Mode=OneWay}" />
+                                        <Run Text="-bit)" />
+                                    </TextBlock>
+
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{loc:Str FullScreenLabel}" FontWeight="SemiBold" Margin="0,0,16,6" />
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding FullScreen, Converter={StaticResource BoolToYesNo}}" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Text="{loc:Str NlaLabel}" FontWeight="SemiBold" Margin="0,0,16,6" />
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding UseNetworkLevelAuth, Converter={StaticResource BoolToYesNo}}" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="5" Grid.Column="0" Text="{loc:Str ConnectionsLabel}" FontWeight="SemiBold" Margin="0,0,16,6" />
+                                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ConnectionCount}" Margin="0,0,0,6" />
+
+                                    <TextBlock Grid.Row="6" Grid.Column="0" Text="{loc:Str LastUsedLabel}" FontWeight="SemiBold" Margin="0,0,16,0" />
+                                    <TextBlock Grid.Row="6" Grid.Column="1"
+                                               Text="{Binding LastConnectedAt, Converter={StaticResource DateToStr}}" />
+                                </Grid>
+                            </Border>
+
+                            <TextBlock Text="{loc:Str Notes}" FontWeight="SemiBold" Margin="0,0,0,4"
+                                       Visibility="{Binding Notes, Converter={StaticResource NotNullToVis}}" />
+                            <TextBlock Text="{Binding Notes}" TextWrapping="Wrap"
+                                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                       Visibility="{Binding Notes, Converter={StaticResource NotNullToVis}}" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+                Padding="12,6">
+            <TextBlock Text="{Binding StatusText}" FontSize="12"
+                       Foreground="{DynamicResource SystemControlForegroundBaseMediumHighBrush}" />
+        </Border>
+    </Grid>
+</Window>
