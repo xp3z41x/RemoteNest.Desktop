@@ -56,6 +56,9 @@ public class ConnectionProfile
     public bool RedirectAudio { get; set; } = true;
     public bool UseNetworkLevelAuth { get; set; } = true;
 
+    /// <summary>When true, this profile auto-connects when the app starts.</summary>
+    public bool AutoConnectOnStartup { get; set; }
+
     [MaxLength(2000)]
     public string Notes { get; set; } = string.Empty;
 

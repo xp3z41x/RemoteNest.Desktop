@@ -11,6 +11,7 @@ public partial class MainWindow
 {
     private readonly MainViewModel _viewModel;
     private readonly Action _focusSearchHandler;
+    private readonly Action _openSettingsHandler;
     private bool _isLoadingLanguage;
 
     public MainWindow(MainViewModel viewModel)
@@ -22,8 +23,16 @@ public partial class MainWindow
         _viewModel.EditRequested += OnEditRequested;
         _focusSearchHandler = () => SearchBox.Focus();
         _viewModel.FocusSearchRequested += _focusSearchHandler;
+        _openSettingsHandler = OnOpenSettings;
+        _viewModel.OpenSettingsRequested += _openSettingsHandler;
 
         InitializeLanguageComboBox();
+    }
+
+    private void OnOpenSettings()
+    {
+        var dialog = new SettingsDialog { Owner = this };
+        dialog.ShowDialog();
     }
 
     private void InitializeLanguageComboBox()
@@ -112,6 +121,7 @@ public partial class MainWindow
     {
         _viewModel.EditRequested -= OnEditRequested;
         _viewModel.FocusSearchRequested -= _focusSearchHandler;
+        _viewModel.OpenSettingsRequested -= _openSettingsHandler;
         _viewModel.Cleanup();
         base.OnClosed(e);
     }

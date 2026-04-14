@@ -66,7 +66,10 @@
 
                         <TextBlock Text="{loc:Str Notes}" Margin="0,0,0,4" />
                         <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
-                                 AcceptsReturn="True" TextWrapping="Wrap" Height="60" />
+                                 AcceptsReturn="True" TextWrapping="Wrap" Height="60" Margin="0,0,0,12" />
+
+                        <ui:ToggleSwitch x:Name="AutoConnectToggle" Header="{loc:Str AutoConnect}"
+                                         Toggled="AutoConnectToggle_Toggled" />
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

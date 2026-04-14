@@ -63,6 +63,7 @@ public class ConnectionService : IConnectionService
         existing.RedirectPrinters = profile.RedirectPrinters;
         existing.RedirectAudio = profile.RedirectAudio;
         existing.UseNetworkLevelAuth = profile.UseNetworkLevelAuth;
+        existing.AutoConnectOnStartup = profile.AutoConnectOnStartup;
         existing.Notes = profile.Notes;
 
         await db.SaveChangesAsync();
@@ -104,6 +105,7 @@ public class ConnectionService : IConnectionService
             RedirectPrinters = original.RedirectPrinters,
             RedirectAudio = original.RedirectAudio,
             UseNetworkLevelAuth = original.UseNetworkLevelAuth,
+            AutoConnectOnStartup = original.AutoConnectOnStartup,
             Notes = original.Notes,
             CreatedAt = DateTime.UtcNow
         };
@@ -172,6 +174,7 @@ public class ConnectionService : IConnectionService
                 p.RedirectPrinters,
                 p.RedirectAudio,
                 p.UseNetworkLevelAuth,
+                p.AutoConnectOnStartup,
                 p.Notes
             })
             .ToListAsync();

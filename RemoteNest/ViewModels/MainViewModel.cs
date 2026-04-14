@@ -40,6 +40,9 @@ public partial class MainViewModel : ObservableObject
     /// <summary>Event requesting the UI to focus the search box.</summary>
     public event Action? FocusSearchRequested;
 
+    /// <summary>Event requesting the UI to open the settings dialog.</summary>
+    public event Action? OpenSettingsRequested;
+
     public MainViewModel(
         IConnectionService connectionService,
         IEncryptionService encryptionService,
@@ -71,6 +74,43 @@ public partial class MainViewModel : ObservableObject
 
     public async Task InitializeAsync()
     {
+        await ConnectionList.LoadAsync();
+        await RefreshStatsAsync();
+        await AutoConnectMarkedProfilesAsync();
+    }
+
+    private async Task AutoConnectMarkedProfilesAsync()
+    {
+        var all = await _connectionService.GetAllAsync();
+        var toConnect = all.Where(p => p.AutoConnectOnStartup).ToList();
+        if (toConnect.Count == 0) return;
+
+        foreach (var profile in toConnect)
+        {
+            try
+            {
+                string? plainPassword = null;
+                if (!string.IsNullOrEmpty(profile.EncryptedPassword))
+                {
+                    try { plainPassword = _encryptionService.Decrypt(profile.EncryptedPassword); }
+                    catch { /* corrupted DPAPI — skip password */ }
+                }
+
+                await _rdpLauncher.LaunchAsync(profile, plainPassword);
+                await _connectionService.RecordConnectionAsync(profile.Id);
+
+                // 500ms delay between launches — RdpLauncherService writes Default.rdp;
+                // mstsc needs time to read it before we overwrite for the next connection.
+                await Task.Delay(500);
+            }
+            catch (Exception ex)
+            {
+                StatusText = $"{TranslationSource.Get("ConnectionFailed")}: {profile.Name} — {ex.Message}";
+                // Continue with next profile — don't abort the whole auto-connect chain.
+            }
+        }
+
+        // Refresh after all launches to update LastConnectedAt counters in the UI.
         await ConnectionList.LoadAsync();
         await RefreshStatsAsync();
     }
@@ -205,5 +245,11 @@ public partial class MainViewModel : ObservableObject
     private void FocusSearch()
     {
         FocusSearchRequested?.Invoke();
+    }
+
+    [RelayCommand]
+    private void OpenSettings()
+    {
+        OpenSettingsRequested?.Invoke();
     }
 }

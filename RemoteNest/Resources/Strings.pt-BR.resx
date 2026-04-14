@@ -92,4 +92,10 @@
   <data name="Never" xml:space="preserve"><value>Nunca</value></data>
   <data name="Yes" xml:space="preserve"><value>Sim</value></data>
   <data name="No" xml:space="preserve"><value>Não</value></data>
+  <data name="Settings" xml:space="preserve"><value>Configurações</value></data>
+  <data name="SettingsTitle" xml:space="preserve"><value>Configurações</value></data>
+  <data name="AutoStartWithWindows" xml:space="preserve"><value>Iniciar com o Windows</value></data>
+  <data name="AutoStartDescription" xml:space="preserve"><value>Abrir o RemoteNest automaticamente ao entrar no Windows.</value></data>
+  <data name="Close" xml:space="preserve"><value>Fechar</value></data>
+  <data name="AutoConnect" xml:space="preserve"><value>Conectar automaticamente ao iniciar o app</value></data>
 </root>

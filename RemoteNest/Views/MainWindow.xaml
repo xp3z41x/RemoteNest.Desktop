@@ -68,6 +68,10 @@
                         Margin="0,0,4,0" Padding="12,6" VerticalAlignment="Center" />
                 <Button Content="{loc:Str Export}" Command="{Binding ExportProfilesCommand}"
                         Margin="0,0,4,0" Padding="12,6" VerticalAlignment="Center" />
+                <Button Command="{Binding OpenSettingsCommand}" Margin="0,0,4,0"
+                        ToolTip="{loc:Str Settings}" Padding="12,6" VerticalAlignment="Center">
+                    <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" />
+                </Button>
                 <ComboBox x:Name="LanguageComboBox" MinWidth="180" Padding="8,6"
                           VerticalAlignment="Center"
                           SelectionChanged="LanguageComboBox_SelectionChanged" />

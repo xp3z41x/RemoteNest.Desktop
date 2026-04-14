@@ -50,6 +50,9 @@ public partial class ConnectionEditorViewModel : ObservableObject
     [ObservableProperty] private bool _redirectAudio = true;
     [ObservableProperty] private bool _useNetworkLevelAuth = true;
 
+    // Auto-connect on app startup
+    [ObservableProperty] private bool _autoConnectOnStartup;
+
     // Available groups for ComboBox
     [ObservableProperty] private List<string> _availableGroups = new();
 
@@ -101,6 +104,7 @@ public partial class ConnectionEditorViewModel : ObservableObject
         RedirectPrinters = profile.RedirectPrinters;
         RedirectAudio = profile.RedirectAudio;
         UseNetworkLevelAuth = profile.UseNetworkLevelAuth;
+        AutoConnectOnStartup = profile.AutoConnectOnStartup;
 
         if (!string.IsNullOrEmpty(profile.EncryptedPassword))
         {
@@ -134,6 +138,7 @@ public partial class ConnectionEditorViewModel : ObservableObject
         profile.RedirectPrinters = RedirectPrinters;
         profile.RedirectAudio = RedirectAudio;
         profile.UseNetworkLevelAuth = UseNetworkLevelAuth;
+        profile.AutoConnectOnStartup = AutoConnectOnStartup;
 
         profile.EncryptedPassword = string.IsNullOrEmpty(Password)
             ? string.Empty

@@ -34,6 +34,7 @@ public partial class ConnectionEditorView
         RedirectPrintersToggle.IsOn = _viewModel.RedirectPrinters;
         RedirectAudioToggle.IsOn = _viewModel.RedirectAudio;
         UseNlaToggle.IsOn = _viewModel.UseNetworkLevelAuth;
+        AutoConnectToggle.IsOn = _viewModel.AutoConnectOnStartup;
 
         // ModernWPF NumberBox Value binding can also be unreliable — sync manually
         PortBox.Value = _viewModel.Port;
@@ -90,6 +91,12 @@ public partial class ConnectionEditorView
     {
         if (!_isLoading)
             _viewModel.UseNetworkLevelAuth = UseNlaToggle.IsOn;
+    }
+
+    private void AutoConnectToggle_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (!_isLoading)
+            _viewModel.AutoConnectOnStartup = AutoConnectToggle.IsOn;
     }
 
     // NumberBox event handlers
