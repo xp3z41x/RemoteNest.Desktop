@@ -47,10 +47,39 @@ dotnet run --project RemoteNest/RemoteNest.csproj
 ## Publish as Single-File Executable
 
 ```bash
-dotnet publish RemoteNest/RemoteNest.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./publish
+dotnet publish RemoteNest/RemoteNest.csproj -c Release -r win-x64 \
+  --self-contained true \
+  -p:PublishSingleFile=true \
+  -p:EnableCompressionInSingleFile=false \
+  -p:IncludeAllContentForSelfExtract=true \
+  -p:IncludeNativeLibrariesForSelfExtract=true \
+  -o ./publish-portable
 ```
 
-The output `RemoteNest.exe` will be in the `./publish` folder.
+The output `RemoteNest.exe` will be in `./publish-portable/`. Compression is
+deliberately **disabled** to keep the binary's entropy in the normal range —
+this reduces false positives from antivirus heuristics that flag compressed
+.NET single-file bundles as packed malware. Expect ~150 MB.
+
+## Verifying Downloads
+
+Every GitHub release includes a `SHA256SUMS.txt` file alongside the binaries.
+Verify the integrity of your download by comparing hashes:
+
+```powershell
+Get-FileHash .\RemoteNest-Portable.exe -Algorithm SHA256
+```
+
+The output should match the line for the corresponding file in
+`SHA256SUMS.txt` from the [release page](https://github.com/xp3z41x/RemoteNest.Desktop/releases).
+
+## Antivirus Warnings
+
+Unsigned .NET single-file bundles are occasionally flagged as malware by
+antivirus heuristics. This is a known, industry-wide problem. See
+[docs/AV-FAQ.md](docs/AV-FAQ.md) for why it happens, how to verify the
+binary is authentic, and how to submit a false-positive report to your
+AV vendor.
 
 ## Data Storage
 

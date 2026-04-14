@@ -3,8 +3,15 @@ obj/
 publish/
 publish-portable/
 output/
+verify/
+ci-publish-portable/
 *.user
 *.suo
+*.binlog
+*.pfx
+*.snk
+msbuild.log
+SHA256SUMS.txt
 .vs/
 .idea/
 .claude/

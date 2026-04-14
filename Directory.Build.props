@@ -1,0 +1,51 @@
+<Project>
+
+  <!-- Identity — flui para Win32 version resource (visivel em Propriedades -> Detalhes) -->
+  <PropertyGroup>
+    <Product>RemoteNest</Product>
+    <Company>RemoteNest</Company>
+    <Authors>xp3z41x</Authors>
+    <Copyright>Copyright (C) 2025-$([System.DateTime]::Now.Year) RemoteNest</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/xp3z41x/RemoteNest.Desktop</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/xp3z41x/RemoteNest.Desktop</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <!-- Versioning — fonte unica -->
+  <PropertyGroup>
+    <VersionPrefix>1.0.7</VersionPrefix>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>$(VersionPrefix).0</FileVersion>
+    <InformationalVersion>$(VersionPrefix)</InformationalVersion>
+  </PropertyGroup>
+
+  <!-- Language / style -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!-- Localization — strip automatico de locales nao-suportados -->
+  <PropertyGroup>
+    <SatelliteResourceLanguages>en;pt-BR</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!-- Publish defaults do portable single-file (CLI pode sobrescrever) -->
+  <PropertyGroup>
+    <EnableCompressionInSingleFile Condition="'$(EnableCompressionInSingleFile)'==''">false</EnableCompressionInSingleFile>
+    <IncludeAllContentForSelfExtract Condition="'$(IncludeAllContentForSelfExtract)'==''">true</IncludeAllContentForSelfExtract>
+    <IncludeNativeLibrariesForSelfExtract Condition="'$(IncludeNativeLibrariesForSelfExtract)'==''">true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
+  <!-- Release: simbolos embedded (AVs tratam PDB embutido como sinal de legitimidade) -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+</Project>

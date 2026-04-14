@@ -3,13 +3,12 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyName>RemoteNest</AssemblyName>
+    <AssemblyTitle>RemoteNest</AssemblyTitle>
     <RootNamespace>RemoteNest</RootNamespace>
-    <Version>1.0.6</Version>
     <Description>RDP Connection Manager for Windows</Description>
   </PropertyGroup>
 
