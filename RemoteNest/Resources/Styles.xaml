@@ -1,0 +1,32 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="http://schemas.modernwpf.com/2019">
+
+    <!-- Default button: uniform size across the entire app -->
+    <Style x:Key="RnButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Padding" Value="14,7" />
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="MinWidth" Value="80" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <!-- Toolbar button: icon+text or icon-only. Same height as default, no MinWidth -->
+    <Style x:Key="RnToolbarButtonStyle" TargetType="Button" BasedOn="{StaticResource RnButtonStyle}">
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="Padding" Value="12,7" />
+    </Style>
+
+    <!-- Accent / primary CTA: same dimensions as default, colored fill -->
+    <Style x:Key="RnAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+        <Setter Property="Padding" Value="16,7" />
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="MinWidth" Value="100" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <!-- Implicit: every Button without an explicit Style inherits RnButtonStyle -->
+    <Style TargetType="Button" BasedOn="{StaticResource RnButtonStyle}" />
+
+</ResourceDictionary>

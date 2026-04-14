@@ -48,7 +48,8 @@
             <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="8,6"
                         VerticalAlignment="Center">
                 <Button Command="{Binding AddConnectionCommand}" Margin="0,0,4,0"
-                        ToolTip="{loc:Str AddNewConnection}" Padding="12,6" VerticalAlignment="Center">
+                        ToolTip="{loc:Str AddNewConnection}" VerticalAlignment="Center"
+                        Style="{StaticResource RnToolbarButtonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets"
                                    VerticalAlignment="Center" Margin="0,0,6,0" />
@@ -65,14 +66,17 @@
             <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="8,6"
                         VerticalAlignment="Center">
                 <Button Content="{loc:Str Import}" Command="{Binding ImportProfilesCommand}"
-                        Margin="0,0,4,0" Padding="12,6" VerticalAlignment="Center" />
+                        Margin="0,0,4,0" VerticalAlignment="Center"
+                        Style="{StaticResource RnToolbarButtonStyle}" />
                 <Button Content="{loc:Str Export}" Command="{Binding ExportProfilesCommand}"
-                        Margin="0,0,4,0" Padding="12,6" VerticalAlignment="Center" />
+                        Margin="0,0,4,0" VerticalAlignment="Center"
+                        Style="{StaticResource RnToolbarButtonStyle}" />
                 <Button Command="{Binding OpenSettingsCommand}" Margin="0,0,4,0"
-                        ToolTip="{loc:Str Settings}" Padding="12,6" VerticalAlignment="Center">
+                        ToolTip="{loc:Str Settings}" VerticalAlignment="Center"
+                        Style="{StaticResource RnToolbarButtonStyle}">
                     <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" />
                 </Button>
-                <ComboBox x:Name="LanguageComboBox" MinWidth="180" Padding="8,6"
+                <ComboBox x:Name="LanguageComboBox" MinWidth="180" Padding="12,7" MinHeight="34"
                           VerticalAlignment="Center"
                           SelectionChanged="LanguageComboBox_SelectionChanged" />
             </StackPanel>
@@ -225,8 +229,8 @@
                             </TextBlock>
 
                             <Button Command="{Binding DataContext.ConnectCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                    HorizontalAlignment="Left" Padding="24,10"
-                                    Style="{StaticResource AccentButtonStyle}" FontSize="14">
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource RnAccentButtonStyle}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="&#xE768;" FontFamily="Segoe MDL2 Assets"
                                                VerticalAlignment="Center" Margin="0,0,8,0" />
@@ -237,13 +241,12 @@
                             <StackPanel Orientation="Horizontal" Margin="0,12,0,20">
                                 <Button Content="{loc:Str Edit}"
                                         Command="{Binding DataContext.EditConnectionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                        Margin="0,0,8,0" Padding="16,6" />
+                                        Margin="0,0,8,0" />
                                 <Button Content="{loc:Str Duplicate}"
                                         Command="{Binding DataContext.ConnectionList.DuplicateSelectedCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                        Margin="0,0,8,0" Padding="16,6" />
+                                        Margin="0,0,8,0" />
                                 <Button Content="{loc:Str Delete}"
                                         Command="{Binding DataContext.ConnectionList.DeleteSelectedCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                        Padding="16,6"
                                         Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" />
                             </StackPanel>
 

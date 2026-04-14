@@ -98,4 +98,10 @@
   <data name="AutoStartDescription" xml:space="preserve"><value>Launch RemoteNest automatically when you sign in to Windows.</value></data>
   <data name="Close" xml:space="preserve"><value>Close</value></data>
   <data name="AutoConnect" xml:space="preserve"><value>Auto-connect on app startup</value></data>
+  <data name="Theme" xml:space="preserve"><value>Theme</value></data>
+  <data name="ThemeDescription" xml:space="preserve"><value>Changes the app's color scheme. Applies immediately.</value></data>
+  <data name="ThemeSystem" xml:space="preserve"><value>System default</value></data>
+  <data name="ThemeLight" xml:space="preserve"><value>Light</value></data>
+  <data name="ThemeDarkBlue" xml:space="preserve"><value>Dark Blue</value></data>
+  <data name="ThemeDark" xml:space="preserve"><value>Dark</value></data>
 </root>

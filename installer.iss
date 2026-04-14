@@ -1,8 +1,8 @@
 [Setup]
 AppId={{B5F2A1E3-7C4D-4A8F-9E6B-1D3F5A7C9E2B}
 AppName=RemoteNest
-AppVersion=1.0.4
-AppVerName=RemoteNest 1.0.4
+AppVersion=1.0.5
+AppVerName=RemoteNest 1.0.5
 AppPublisher=RemoteNest
 DefaultDirName={autopf}\RemoteNest
 DefaultGroupName=RemoteNest
