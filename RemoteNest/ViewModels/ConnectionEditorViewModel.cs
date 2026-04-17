@@ -117,7 +117,7 @@ public partial class ConnectionEditorViewModel : ObservableObject
 
     private bool CanSave() => !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Host);
 
-    [RelayCommand(CanExecute = nameof(CanSave))]
+    [RelayCommand(CanExecute = nameof(CanSave), AllowConcurrentExecutions = false)]
     private async Task Save()
     {
         var profile = new ConnectionProfile { Id = _profileId };
@@ -160,7 +160,7 @@ public partial class ConnectionEditorViewModel : ObservableObject
         CloseRequested?.Invoke();
     }
 
-    [RelayCommand]
+    [RelayCommand(AllowConcurrentExecutions = false)]
     private async Task TestConnection()
     {
         if (string.IsNullOrWhiteSpace(Host)) return;

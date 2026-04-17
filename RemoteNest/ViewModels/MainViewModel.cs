@@ -1,8 +1,8 @@
 using System.ComponentModel;
-using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Win32;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using RemoteNest.Localization;
 using RemoteNest.Models;
 using RemoteNest.Services;
@@ -17,6 +17,8 @@ public partial class MainViewModel : ObservableObject
     private readonly IConnectionService _connectionService;
     private readonly IEncryptionService _encryptionService;
     private readonly IRdpLauncherService _rdpLauncher;
+    private readonly IDialogService _dialogService;
+    private readonly ILogger<MainViewModel> _logger;
 
     public ConnectionListViewModel ConnectionList { get; }
 
@@ -46,14 +48,28 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel(
         IConnectionService connectionService,
         IEncryptionService encryptionService,
-        IRdpLauncherService rdpLauncher)
+        IRdpLauncherService rdpLauncher,
+        IDialogService? dialogService = null,
+        ILogger<MainViewModel>? logger = null)
     {
         _connectionService = connectionService;
         _encryptionService = encryptionService;
         _rdpLauncher = rdpLauncher;
+        _dialogService = dialogService ?? new DialogService();
+        _logger = logger ?? NullLogger<MainViewModel>.Instance;
 
         ConnectionList = new ConnectionListViewModel(connectionService);
         ConnectionList.PropertyChanged += OnConnectionListPropertyChanged;
+
+        // Refresh localized status text when the user switches UI language at runtime.
+        TranslationSource.Instance.PropertyChanged += OnTranslationChanged;
+    }
+
+    private void OnTranslationChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        // Only refresh if the current status is one of the localized defaults —
+        // avoids overwriting a contextual message like "Connected to X at HH:mm:ss".
+        StatusText = TranslationSource.Get("Ready");
     }
 
     private void OnConnectionListPropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -65,6 +81,7 @@ public partial class MainViewModel : ObservableObject
     public void Cleanup()
     {
         ConnectionList.PropertyChanged -= OnConnectionListPropertyChanged;
+        TranslationSource.Instance.PropertyChanged -= OnTranslationChanged;
     }
 
     public void RefreshStatusText()
@@ -128,7 +145,7 @@ public partial class MainViewModel : ObservableObject
 
     private bool CanConnectOrEdit() => SelectedProfile is not null;
 
-    [RelayCommand(CanExecute = nameof(CanConnectOrEdit))]
+    [RelayCommand(CanExecute = nameof(CanConnectOrEdit), AllowConcurrentExecutions = false)]
     private async Task Connect()
     {
         var profile = SelectedProfile;
@@ -157,7 +174,7 @@ public partial class MainViewModel : ObservableObject
         await RefreshStatsAsync();
     }
 
-    [RelayCommand]
+    [RelayCommand(AllowConcurrentExecutions = false)]
     private async Task ConnectProfile(ConnectionProfile? profile)
     {
         if (profile is null) return;
@@ -166,7 +183,7 @@ public partial class MainViewModel : ObservableObject
         await Connect();
     }
 
-    [RelayCommand]
+    [RelayCommand(AllowConcurrentExecutions = false)]
     private async Task AddConnection()
     {
         var editorVm = new ConnectionEditorViewModel(_connectionService, _encryptionService, _rdpLauncher);
@@ -179,7 +196,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    [RelayCommand(CanExecute = nameof(CanConnectOrEdit))]
+    [RelayCommand(CanExecute = nameof(CanConnectOrEdit), AllowConcurrentExecutions = false)]
     private async Task EditConnection()
     {
         if (SelectedProfile is null) return;
@@ -196,49 +213,59 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    [RelayCommand]
+    [RelayCommand(AllowConcurrentExecutions = false)]
     private async Task ExportProfiles()
     {
-        var dialog = new SaveFileDialog
-        {
-            Filter = $"{TranslationSource.Get("JsonFilter")}|*.json",
-            FileName = TranslationSource.Get("DefaultExportName")
-        };
+        var filter = $"{TranslationSource.Get("JsonFilter")}|*.json";
+        var path = _dialogService.ShowSaveFileDialog(filter, TranslationSource.Get("DefaultExportName"));
+        if (path is null) return;
 
-        if (dialog.ShowDialog() == true)
+        try
         {
             var json = await _connectionService.ExportToJsonAsync();
-            await File.WriteAllTextAsync(dialog.FileName, json);
-            StatusText = TranslationSource.Format("ExportedStatus", TotalConnections, Path.GetFileName(dialog.FileName));
+            await File.WriteAllTextAsync(path, json);
+            StatusText = TranslationSource.Format("ExportedStatus", TotalConnections, Path.GetFileName(path));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Export failed for {Path}", path);
+            _dialogService.ShowError(TranslationSource.Get("ErrorOccurred"), ex.Message);
+            StatusText = $"{TranslationSource.Get("ErrorOccurred")}: {ex.Message}";
         }
     }
 
-    [RelayCommand]
+    [RelayCommand(AllowConcurrentExecutions = false)]
     private async Task ImportProfiles()
     {
         var jsonFilter = TranslationSource.Get("JsonFilter");
-        var dialog = new OpenFileDialog
-        {
-            Filter = $"{jsonFilter}|*.json|RDP Files (*.rdp)|*.rdp"
-        };
+        var filter = $"{jsonFilter}|*.json|RDP Files (*.rdp)|*.rdp";
+        var path = _dialogService.ShowOpenFileDialog(filter);
+        if (path is null) return;
 
-        if (dialog.ShowDialog() != true) return;
-
-        int count;
-        if (dialog.FileName.EndsWith(".rdp", StringComparison.OrdinalIgnoreCase))
+        try
         {
-            await _connectionService.ImportFromRdpFileAsync(dialog.FileName);
-            count = 1;
+            int count;
+            if (path.EndsWith(".rdp", StringComparison.OrdinalIgnoreCase))
+            {
+                await _connectionService.ImportFromRdpFileAsync(path);
+                count = 1;
+            }
+            else
+            {
+                var json = await File.ReadAllTextAsync(path);
+                count = await _connectionService.ImportFromJsonAsync(json);
+            }
+
+            await ConnectionList.LoadAsync();
+            await RefreshStatsAsync();
+            StatusText = TranslationSource.Format("ImportedStatus", count, Path.GetFileName(path));
         }
-        else
+        catch (Exception ex)
         {
-            var json = await File.ReadAllTextAsync(dialog.FileName);
-            count = await _connectionService.ImportFromJsonAsync(json);
+            _logger.LogError(ex, "Import failed for {Path}", path);
+            _dialogService.ShowError(TranslationSource.Get("ErrorOccurred"), ex.Message);
+            StatusText = $"{TranslationSource.Get("ErrorOccurred")}: {ex.Message}";
         }
-
-        await ConnectionList.LoadAsync();
-        await RefreshStatsAsync();
-        StatusText = TranslationSource.Format("ImportedStatus", count, Path.GetFileName(dialog.FileName));
     }
 
     [RelayCommand]

@@ -7,10 +7,15 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         Icon="/Assets/app.ico"
         Title="{loc:Str EditorTitle}"
-        Width="520" Height="540"
-        ResizeMode="NoResize"
+        Width="520" MinHeight="540" MaxHeight="820"
+        SizeToContent="Height"
+        ResizeMode="CanResize"
         WindowStartupLocation="CenterOwner"
         Loaded="Window_Loaded">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding CancelCommand}" />
+    </Window.InputBindings>
 
     <Window.Resources>
         <converters:NullToVisibilityConverter x:Key="NotNullToVis" Invert="True" />
@@ -30,7 +35,7 @@
                         <TextBlock Text="{loc:Str NameRequired}" Margin="0,0,0,4" />
                         <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                                  ui:ControlHelper.PlaceholderText="{loc:Str NamePlaceholder}" Margin="0,0,0,2" />
-                        <TextBlock Text="{Binding NameError}" Foreground="IndianRed" FontSize="11"
+                        <TextBlock Text="{Binding NameError}" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" FontSize="11"
                                    Margin="0,0,0,8"
                                    Visibility="{Binding NameError, Converter={StaticResource NotNullToVis}}" />
 
@@ -43,7 +48,7 @@
                         <TextBlock Text="{loc:Str HostRequired}" Margin="0,0,0,4" />
                         <TextBox Text="{Binding Host, UpdateSourceTrigger=PropertyChanged}"
                                  ui:ControlHelper.PlaceholderText="{loc:Str HostPlaceholder}" Margin="0,0,0,2" />
-                        <TextBlock Text="{Binding HostError}" Foreground="IndianRed" FontSize="11"
+                        <TextBlock Text="{Binding HostError}" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" FontSize="11"
                                    Margin="0,0,0,8"
                                    Visibility="{Binding HostError, Converter={StaticResource NotNullToVis}}" />
 
@@ -119,8 +124,10 @@
             <Button Content="{loc:Str TestConnection}" Command="{Binding TestConnectionCommand}"
                     Margin="0,0,8,0" />
             <Button Content="{loc:Str Save}" Command="{Binding SaveCommand}"
+                    IsDefault="True"
                     Style="{StaticResource RnAccentButtonStyle}" Margin="0,0,8,0" />
-            <Button Content="{loc:Str Cancel}" Command="{Binding CancelCommand}" />
+            <Button Content="{loc:Str Cancel}" Command="{Binding CancelCommand}"
+                    IsCancel="True" />
         </StackPanel>
     </Grid>
 </Window>

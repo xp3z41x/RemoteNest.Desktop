@@ -48,7 +48,9 @@
             <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="8,6"
                         VerticalAlignment="Center">
                 <Button Command="{Binding AddConnectionCommand}" Margin="0,0,4,0"
-                        ToolTip="{loc:Str AddNewConnection}" VerticalAlignment="Center"
+                        ToolTip="{loc:Str AddNewConnection}"
+                        AutomationProperties.Name="{loc:Str AddNewConnection}"
+                        VerticalAlignment="Center"
                         Style="{StaticResource RnToolbarButtonStyle}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets"
@@ -72,7 +74,9 @@
                         Margin="0,0,4,0" VerticalAlignment="Center"
                         Style="{StaticResource RnToolbarButtonStyle}" />
                 <Button Command="{Binding OpenSettingsCommand}" Margin="0,0,4,0"
-                        ToolTip="{loc:Str Settings}" VerticalAlignment="Center"
+                        ToolTip="{loc:Str Settings}"
+                        AutomationProperties.Name="{loc:Str Settings}"
+                        VerticalAlignment="Center"
                         Style="{StaticResource RnToolbarButtonStyle}">
                     <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" />
                 </Button>
@@ -139,8 +143,14 @@
                                         </Border>
                                     </DataTemplate>
                                 </HierarchicalDataTemplate.ItemTemplate>
+
+                                <!-- Profile leaf containers: plain style, no IsExpanded binding -->
+                                <HierarchicalDataTemplate.ItemContainerStyle>
+                                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}" />
+                                </HierarchicalDataTemplate.ItemContainerStyle>
                             </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>
+                        <!-- Top-level group containers: bind IsExpanded to GroupViewModel.IsExpanded -->
                         <TreeView.ItemContainerStyle>
                             <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                                 <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />

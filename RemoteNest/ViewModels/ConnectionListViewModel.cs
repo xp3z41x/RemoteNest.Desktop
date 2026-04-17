@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -31,7 +32,13 @@ public partial class ConnectionListViewModel : ObservableObject
     public ConnectionListViewModel(IConnectionService connectionService)
     {
         _connectionService = connectionService;
+
+        // Rebuild groups when the UI language changes so the localized "Ungrouped"
+        // key (and any future localized group names) reflect the new culture.
+        TranslationSource.Instance.PropertyChanged += OnTranslationChanged;
     }
+
+    private void OnTranslationChanged(object? sender, PropertyChangedEventArgs e) => ApplyFilter();
 
     public async Task LoadAsync()
     {
@@ -53,19 +60,25 @@ public partial class ConnectionListViewModel : ObservableObject
                 p.Host.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
+        var ungrouped = TranslationSource.Get("Ungrouped");
         var grouped = filtered
-            .GroupBy(p => string.IsNullOrEmpty(p.Group) ? TranslationSource.Get("Ungrouped") : p.Group)
-            .OrderBy(g => g.Key);
+            .GroupBy(p => string.IsNullOrEmpty(p.Group) ? ungrouped : p.Group)
+            .OrderBy(g => g.Key, StringComparer.CurrentCultureIgnoreCase);
 
         void RebuildGroups()
         {
+            // Preserve IsExpanded state across rebuilds (search filter, language change,
+            // profile CRUD). Without this, every reload collapses the tree.
+            var prevExpansion = Groups.ToDictionary(g => g.Name, g => g.IsExpanded);
+
             Groups.Clear();
             foreach (var group in grouped)
             {
                 Groups.Add(new GroupViewModel
                 {
                     Name = group.Key,
-                    Profiles = new ObservableCollection<ConnectionProfile>(group.ToList())
+                    Profiles = new ObservableCollection<ConnectionProfile>(group.ToList()),
+                    IsExpanded = prevExpansion.TryGetValue(group.Key, out var wasExpanded) ? wasExpanded : true
                 });
             }
         }

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteNest", "RemoteNest\RemoteNest.csproj", "{3583A49D-760A-410B-A533-428ED122E0B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteNest.Tests", "RemoteNest.Tests\RemoteNest.Tests.csproj", "{FBA2B88A-B7F4-4B8E-9F66-CB7FF8C7F918}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{3583A49D-760A-410B-A533-428ED122E0B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3583A49D-760A-410B-A533-428ED122E0B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3583A49D-760A-410B-A533-428ED122E0B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBA2B88A-B7F4-4B8E-9F66-CB7FF8C7F918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA2B88A-B7F4-4B8E-9F66-CB7FF8C7F918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA2B88A-B7F4-4B8E-9F66-CB7FF8C7F918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA2B88A-B7F4-4B8E-9F66-CB7FF8C7F918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

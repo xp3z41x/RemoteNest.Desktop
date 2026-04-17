@@ -84,6 +84,7 @@
   <data name="FailedReadRdp" xml:space="preserve"><value>Falha ao ler arquivo RDP: {0}</value></data>
   <data name="RdpNoHost" xml:space="preserve"><value>Arquivo RDP não contém um endereço de host válido.</value></data>
   <data name="FailedStartMstsc" xml:space="preserve"><value>Falha ao iniciar mstsc.exe. Verifique se a Área de Trabalho Remota está disponível.</value></data>
+  <data name="InvalidHost" xml:space="preserve"><value>Endereço de host inválido: {0}</value></data>
   <data name="Language" xml:space="preserve"><value>Idioma</value></data>
   <data name="JsonFilter" xml:space="preserve"><value>Arquivos JSON (*.json)</value></data>
   <data name="DefaultExportName" xml:space="preserve"><value>remotenest-export.json</value></data>

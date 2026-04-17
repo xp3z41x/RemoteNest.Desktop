@@ -6,10 +6,15 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         Icon="/Assets/app.ico"
         Title="{loc:Str SettingsTitle}"
-        Width="460" Height="380"
-        ResizeMode="NoResize"
+        Width="460" MinHeight="380" MaxHeight="640"
+        SizeToContent="Height"
+        ResizeMode="CanResize"
         WindowStartupLocation="CenterOwner"
         Loaded="Window_Loaded">
+
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{x:Static ApplicationCommands.Close}" />
+    </Window.InputBindings>
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -38,6 +43,7 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="{loc:Str Close}" Click="CloseButton_Click"
+                    IsDefault="True" IsCancel="True"
                     Style="{StaticResource RnAccentButtonStyle}" />
         </StackPanel>
     </Grid>
