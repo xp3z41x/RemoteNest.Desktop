@@ -5,6 +5,8 @@ organized in groups, and launch them without retyping hosts and credentials.
 
 *[Leia em português](README.pt-BR.md)*
 
+![Connection details](docs/screenshots/02-connection-details.png)
+
 ## Features
 
 - Connection profiles with groups, search, and duplication
@@ -18,6 +20,24 @@ organized in groups, and launch them without retyping hosts and credentials.
   exact revert
 - Light, dark, and dark blue themes, with adjustable Windows acrylic transparency
 - English and Portuguese (Brazil), detected from Windows on first run
+
+## Screenshots
+
+The dashboard is the landing screen: totals and the connections you used most recently,
+one click away.
+
+![Dashboard](docs/screenshots/01-dashboard.png)
+
+The editor splits the settings across nine tabs, so nothing needs scrolling.
+
+| General | Display |
+| --- | --- |
+| ![Editor, General tab](docs/screenshots/03-editor-general.png) | ![Editor, Display tab](docs/screenshots/04-editor-display.png) |
+
+Settings holds the language, theme, transparency, and the switch for the Windows RDP
+warning dialogs.
+
+<img src="docs/screenshots/05-settings.png" alt="Settings" width="420">
 
 ## Download
 

@@ -5,6 +5,8 @@ em um só lugar, organizados em grupos, e abre cada um sem redigitar host e cred
 
 *[Read in English](README.md)*
 
+![Detalhes da conexão](docs/screenshots/02-connection-details.png)
+
 ## Recursos
 
 - Perfis de conexão com grupos, busca e duplicação
@@ -17,6 +19,26 @@ em um só lugar, organizados em grupos, e abre cada um sem redigitar host e cred
 - Opção que suprime as caixas de aviso do Remote Desktop do Windows, com reversão exata
 - Temas claro, escuro e azul-escuro, com transparência acrylic ajustável
 - Português (Brasil) e inglês, detectados do Windows na primeira execução
+
+## Telas
+
+O painel inicial mostra o total de conexões e as usadas mais recentemente, a um clique.
+
+![Painel inicial](docs/screenshots/01-dashboard.png)
+
+O editor distribui as configurações em nove abas, para que nenhuma precise de rolagem.
+
+| Geral | Tela |
+| --- | --- |
+| ![Editor, aba Geral](docs/screenshots/03-editor-general.png) | ![Editor, aba Tela](docs/screenshots/04-editor-display.png) |
+
+Em Configurações ficam idioma, tema, transparência e a opção para os avisos de segurança
+RDP do Windows.
+
+<img src="docs/screenshots/05-settings.png" alt="Configurações" width="420">
+
+> As telas estão em inglês; a interface acompanha o idioma do Windows e pode ser trocada
+> em Configurações.
 
 ## Download
 
