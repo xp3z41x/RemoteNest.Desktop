@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="xml:space" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AppTitle" xml:space="preserve"><value>RemoteNest — RDP Connection Manager</value></data>
+  <data name="AppSubtitle" xml:space="preserve"><value>RDP Connection Manager</value></data>
+  <data name="EditorTitle" xml:space="preserve"><value>Connection Editor</value></data>
+  <data name="Ready" xml:space="preserve"><value>Ready</value></data>
+  <data name="Connections" xml:space="preserve"><value>Connections</value></data>
+  <data name="New" xml:space="preserve"><value>New</value></data>
+  <data name="Import" xml:space="preserve"><value>Import</value></data>
+  <data name="Export" xml:space="preserve"><value>Export</value></data>
+  <data name="SearchPlaceholder" xml:space="preserve"><value>Search by name or host...</value></data>
+  <data name="TotalConnections" xml:space="preserve"><value>Total Connections: </value></data>
+  <data name="RecentConnections" xml:space="preserve"><value>Recent Connections</value></data>
+  <data name="NoRecentConnections" xml:space="preserve"><value>No recent connections yet.</value></data>
+  <data name="Group" xml:space="preserve"><value>Group</value></data>
+  <data name="Connect" xml:space="preserve"><value>Connect</value></data>
+  <data name="Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Duplicate" xml:space="preserve"><value>Duplicate</value></data>
+  <data name="Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Username" xml:space="preserve"><value>Username</value></data>
+  <data name="UsernameLabel" xml:space="preserve"><value>Username:</value></data>
+  <data name="DomainLabel" xml:space="preserve"><value>Domain:</value></data>
+  <data name="DisplayLabel" xml:space="preserve"><value>Display:</value></data>
+  <data name="FullScreenLabel" xml:space="preserve"><value>Full Screen:</value></data>
+  <data name="NlaLabel" xml:space="preserve"><value>NLA:</value></data>
+  <data name="ConnectionsLabel" xml:space="preserve"><value>Connections:</value></data>
+  <data name="LastUsedLabel" xml:space="preserve"><value>Last Used:</value></data>
+  <data name="Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="General" xml:space="preserve"><value>General</value></data>
+  <data name="Display" xml:space="preserve"><value>Display</value></data>
+  <data name="NameRequired" xml:space="preserve"><value>Name *</value></data>
+  <data name="NamePlaceholder" xml:space="preserve"><value>e.g. Production Server</value></data>
+  <data name="GroupLabel" xml:space="preserve"><value>Group</value></data>
+  <data name="GroupPlaceholder" xml:space="preserve"><value>e.g. Production</value></data>
+  <data name="HostRequired" xml:space="preserve"><value>Host *</value></data>
+  <data name="HostPlaceholder" xml:space="preserve"><value>IP or hostname</value></data>
+  <data name="Port" xml:space="preserve"><value>Port</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Domain" xml:space="preserve"><value>Domain</value></data>
+  <data name="ScreenWidth" xml:space="preserve"><value>Screen Width</value></data>
+  <data name="ScreenHeight" xml:space="preserve"><value>Screen Height</value></data>
+  <data name="FullScreen" xml:space="preserve"><value>Full Screen</value></data>
+  <data name="ColorDepth" xml:space="preserve"><value>Color Depth</value></data>
+  <data name="ClipboardRedirection" xml:space="preserve"><value>Clipboard Redirection</value></data>
+  <data name="DriveRedirection" xml:space="preserve"><value>Drive Redirection</value></data>
+  <data name="PrinterRedirection" xml:space="preserve"><value>Printer Redirection</value></data>
+  <data name="NlaToggle" xml:space="preserve"><value>Network Level Authentication (NLA)</value></data>
+  <data name="TestConnection" xml:space="preserve"><value>Test Connection</value></data>
+  <data name="Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="AddNewConnection" xml:space="preserve"><value>Add new connection</value></data>
+  <data name="Ungrouped" xml:space="preserve"><value>Ungrouped</value></data>
+  <data name="ProfileCopySuffix" xml:space="preserve"><value>(copy)</value></data>
+  <data name="ConnectedStatus" xml:space="preserve"><value>Connected to {0} at {1}</value></data>
+  <data name="ExportedStatus" xml:space="preserve"><value>Exported {0} profiles to {1}</value></data>
+  <data name="ImportedStatus" xml:space="preserve"><value>Imported {0} profile(s) from {1}</value></data>
+  <data name="StartupError" xml:space="preserve"><value>Startup Error</value></data>
+  <data name="StartupErrorMessage" xml:space="preserve"><value>Failed to start RemoteNest:</value></data>
+  <data name="InvalidJsonFormat" xml:space="preserve"><value>Invalid JSON format.</value></data>
+  <data name="ProfileNotFound" xml:space="preserve"><value>Profile {0} not found.</value></data>
+  <data name="FailedReadRdp" xml:space="preserve"><value>Failed to read RDP file: {0}</value></data>
+  <data name="RdpNoHost" xml:space="preserve"><value>RDP file does not contain a valid host address.</value></data>
+  <data name="FailedStartMstsc" xml:space="preserve"><value>Failed to start mstsc.exe. Ensure Remote Desktop is available.</value></data>
+  <data name="InvalidHost" xml:space="preserve"><value>Invalid host address: {0}</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="JsonFilter" xml:space="preserve"><value>JSON Files (*.json)</value></data>
+  <data name="DefaultExportName" xml:space="preserve"><value>remotenest-export.json</value></data>
+  <data name="ErrorOccurred" xml:space="preserve"><value>An error occurred</value></data>
+  <data name="ConnectionFailed" xml:space="preserve"><value>Connection failed</value></data>
+  <data name="Never" xml:space="preserve"><value>Never</value></data>
+  <data name="Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="No" xml:space="preserve"><value>No</value></data>
+  <data name="Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="SettingsTitle" xml:space="preserve"><value>Settings</value></data>
+  <data name="AutoStartWithWindows" xml:space="preserve"><value>Start with Windows</value></data>
+  <data name="AutoStartDescription" xml:space="preserve"><value>Launch RemoteNest automatically when you sign in to Windows.</value></data>
+  <data name="Close" xml:space="preserve"><value>Close</value></data>
+  <data name="AutoConnect" xml:space="preserve"><value>Auto-connect on app startup</value></data>
+  <data name="Theme" xml:space="preserve"><value>Theme</value></data>
+  <data name="ThemeDescription" xml:space="preserve"><value>Changes the app's color scheme. Applies immediately.</value></data>
+  <data name="ThemeSystem" xml:space="preserve"><value>System default</value></data>
+  <data name="ThemeLight" xml:space="preserve"><value>Light</value></data>
+  <data name="ThemeDarkBlue" xml:space="preserve"><value>Dark Blue</value></data>
+  <data name="ThemeDark" xml:space="preserve"><value>Dark</value></data>
+  <data name="CopySettingsFrom" xml:space="preserve"><value>Copy settings from another profile</value></data>
+  <data name="CopyButton" xml:space="preserve"><value>Copy</value></data>
+  <data name="CopySettingsHint" xml:space="preserve"><value>Copies display, redirection, experience, gateway and advanced settings. Name, host, credentials and notes are kept.</value></data>
+  <data name="LocalResources" xml:space="preserve"><value>Local Resources</value></data>
+  <data name="Experience" xml:space="preserve"><value>Experience</value></data>
+  <data name="Gateway" xml:space="preserve"><value>Gateway</value></data>
+  <data name="Advanced" xml:space="preserve"><value>Advanced</value></data>
+  <data name="UseMultimonLabel" xml:space="preserve"><value>Use all monitors</value></data>
+  <data name="UseMultimonHint" xml:space="preserve"><value>Spans the session across local displays. Forces full screen.</value></data>
+  <data name="SelectedMonitorsLabel" xml:space="preserve"><value>Selected monitors</value></data>
+  <data name="SelectedMonitorsHint" xml:space="preserve"><value>Comma-separated IDs from `mstsc /l`, e.g. 0,1 (empty = all)</value></data>
+  <data name="DynamicResolutionLabel" xml:space="preserve"><value>Update resolution when resizing the window</value></data>
+  <data name="SmartSizingLabel" xml:space="preserve"><value>Scale content to fit the window (smart sizing)</value></data>
+  <data name="ScaleFactorLabel" xml:space="preserve"><value>Scale factor (DPI)</value></data>
+  <data name="ScaleFactorAuto" xml:space="preserve"><value>Automatic (match this device)</value></data>
+  <data name="AudioPlayback" xml:space="preserve"><value>Remote audio playback</value></data>
+  <data name="AudioPlayLocal" xml:space="preserve"><value>Play on this computer</value></data>
+  <data name="AudioPlayRemote" xml:space="preserve"><value>Play on the remote computer</value></data>
+  <data name="AudioPlayNone" xml:space="preserve"><value>Do not play</value></data>
+  <data name="AudioQuality" xml:space="preserve"><value>Audio quality</value></data>
+  <data name="AudioQualityDynamic" xml:space="preserve"><value>Dynamic (adjust to bandwidth)</value></data>
+  <data name="AudioQualityMedium" xml:space="preserve"><value>Medium</value></data>
+  <data name="AudioQualityHigh" xml:space="preserve"><value>High (uncompressed)</value></data>
+  <data name="AudioCapture" xml:space="preserve"><value>Microphone (record from this computer)</value></data>
+  <data name="KeyboardHookLabel" xml:space="preserve"><value>Windows key combinations (Win, Alt+Tab)</value></data>
+  <data name="KeyboardHookLocal" xml:space="preserve"><value>On this computer</value></data>
+  <data name="KeyboardHookRemote" xml:space="preserve"><value>On the remote computer</value></data>
+  <data name="KeyboardHookFullScreen" xml:space="preserve"><value>Only when using the full screen</value></data>
+  <data name="DrivesToRedirectHint" xml:space="preserve"><value>Drives, e.g. C:;D: or DynamicDrives (empty = all)</value></data>
+  <data name="ComPortsLabel" xml:space="preserve"><value>Serial (COM) ports</value></data>
+  <data name="SmartCardsLabel" xml:space="preserve"><value>Smart cards</value></data>
+  <data name="WebAuthnLabel" xml:space="preserve"><value>Windows Hello / security keys (WebAuthn)</value></data>
+  <data name="LocationLabel" xml:space="preserve"><value>Location</value></data>
+  <data name="CamerasLabel" xml:space="preserve"><value>Cameras to redirect</value></data>
+  <data name="PnpDevicesLabel" xml:space="preserve"><value>Plug and play (MTP/PTP) devices</value></data>
+  <data name="UsbDevicesLabel" xml:space="preserve"><value>USB devices (opaque redirection)</value></data>
+  <data name="DeviceListHint" xml:space="preserve"><value>* for all, or device instance paths separated by ; (empty = none)</value></data>
+  <data name="NetworkAutoDetectLabel" xml:space="preserve"><value>Detect connection quality automatically</value></data>
+  <data name="ExperienceHint" xml:space="preserve"><value>Turn off to pick a connection profile and tune visual effects manually.</value></data>
+  <data name="ConnectionTypeLabel" xml:space="preserve"><value>Connection speed</value></data>
+  <data name="ConnTypeModem" xml:space="preserve"><value>Modem (56 kbps)</value></data>
+  <data name="ConnTypeBroadbandLow" xml:space="preserve"><value>Low-speed broadband (256 kbps – 2 Mbps)</value></data>
+  <data name="ConnTypeSatellite" xml:space="preserve"><value>Satellite (high latency)</value></data>
+  <data name="ConnTypeBroadbandHigh" xml:space="preserve"><value>High-speed broadband (2 – 10 Mbps)</value></data>
+  <data name="ConnTypeWan" xml:space="preserve"><value>WAN (10 Mbps+, high latency)</value></data>
+  <data name="ConnTypeLan" xml:space="preserve"><value>LAN (10 Mbps+)</value></data>
+  <data name="ConnTypeAuto" xml:space="preserve"><value>Detect automatically</value></data>
+  <data name="DisableWallpaperLabel" xml:space="preserve"><value>Hide desktop wallpaper</value></data>
+  <data name="DisableFullWindowDragLabel" xml:space="preserve"><value>Hide window contents while dragging</value></data>
+  <data name="DisableMenuAnimsLabel" xml:space="preserve"><value>Disable menu and window animation</value></data>
+  <data name="DisableThemesLabel" xml:space="preserve"><value>Disable visual themes</value></data>
+  <data name="AllowFontSmoothingLabel" xml:space="preserve"><value>Font smoothing</value></data>
+  <data name="AllowDesktopCompositionLabel" xml:space="preserve"><value>Desktop composition</value></data>
+  <data name="VideoPlaybackLabel" xml:space="preserve"><value>Efficient multimedia streaming</value></data>
+  <data name="BandwidthAutoDetectLabel" xml:space="preserve"><value>Detect bandwidth automatically</value></data>
+  <data name="CompressionLabel" xml:space="preserve"><value>Compression</value></data>
+  <data name="BitmapCacheLabel" xml:space="preserve"><value>Persistent bitmap caching</value></data>
+  <data name="GatewayHostnameLabel" xml:space="preserve"><value>RD Gateway server</value></data>
+  <data name="GatewayHostnamePlaceholder" xml:space="preserve"><value>gateway.company.com (empty = no gateway)</value></data>
+  <data name="GatewayHint" xml:space="preserve"><value>Connects through a Remote Desktop Gateway — for hosts behind a corporate firewall.</value></data>
+  <data name="GatewayUsageLabel" xml:space="preserve"><value>When to use the gateway</value></data>
+  <data name="GatewayUsageAlways" xml:space="preserve"><value>Always</value></data>
+  <data name="GatewayUsageBypassLocal" xml:space="preserve"><value>Bypass for local addresses</value></data>
+  <data name="GatewayCredSourceLabel" xml:space="preserve"><value>Gateway credentials</value></data>
+  <data name="GatewayCredPassword" xml:space="preserve"><value>Ask for password</value></data>
+  <data name="GatewayCredSmartcard" xml:space="preserve"><value>Smart card</value></data>
+  <data name="GatewayCredAskLater" xml:space="preserve"><value>Choose later</value></data>
+  <data name="GatewayPromptOnceLabel" xml:space="preserve"><value>Use the same credentials for gateway and host</value></data>
+  <data name="AadAuthLabel" xml:space="preserve"><value>Microsoft Entra ID authentication</value></data>
+  <data name="KdcProxyLabel" xml:space="preserve"><value>KDC proxy (Kerberos over the internet)</value></data>
+  <data name="LoadBalanceLabel" xml:space="preserve"><value>Load balancing cookie (loadbalanceinfo)</value></data>
+  <data name="PcbLabel" xml:space="preserve"><value>Preconnection blob (pcb)</value></data>
+  <data name="PcbHint" xml:space="preserve"><value>Used e.g. for connecting straight into a Hyper-V VM by ID.</value></data>
+  <data name="SessionSection" xml:space="preserve"><value>Session</value></data>
+  <data name="AdminSessionLabel" xml:space="preserve"><value>Administrative (console) session</value></data>
+  <data name="AutoReconnectLabel" xml:space="preserve"><value>Reconnect automatically if the connection drops</value></data>
+  <data name="AutoReconnectRetriesLabel" xml:space="preserve"><value>Maximum reconnection attempts</value></data>
+  <data name="ConnectionBarLabel" xml:space="preserve"><value>Show connection bar in full screen</value></data>
+  <data name="PinConnectionBarLabel" xml:space="preserve"><value>Pin the connection bar</value></data>
+  <data name="PublicModeLabel" xml:space="preserve"><value>Public mode (cache nothing on this computer)</value></data>
+  <data name="SecuritySection" xml:space="preserve"><value>Security</value></data>
+  <data name="AuthLevelLabel" xml:space="preserve"><value>If server certificate verification fails</value></data>
+  <data name="AuthLevelConnectAlways" xml:space="preserve"><value>Connect without warning</value></data>
+  <data name="AuthLevelRefuse" xml:space="preserve"><value>Do not connect</value></data>
+  <data name="AuthLevelWarn" xml:space="preserve"><value>Warn me</value></data>
+  <data name="AuthLevelUnspecified" xml:space="preserve"><value>No requirement specified</value></data>
+  <data name="RestrictedAdminLabel" xml:space="preserve"><value>Restricted Admin mode (/restrictedAdmin)</value></data>
+  <data name="RemoteGuardLabel" xml:space="preserve"><value>Remote Credential Guard (/remoteGuard)</value></data>
+  <data name="PromptCredentialsLabel" xml:space="preserve"><value>Always ask for credentials (/prompt)</value></data>
+  <data name="RemoteAppSection" xml:space="preserve"><value>RemoteApp</value></data>
+  <data name="RemoteAppModeLabel" xml:space="preserve"><value>Launch a single program instead of the desktop</value></data>
+  <data name="RemoteAppProgramLabel" xml:space="preserve"><value>Program alias or path</value></data>
+  <data name="RemoteAppProgramPlaceholder" xml:space="preserve"><value>e.g. ||excel or C:\\apps\\tool.exe</value></data>
+  <data name="RemoteAppNameLabel" xml:space="preserve"><value>Display name</value></data>
+  <data name="RemoteAppCmdLineLabel" xml:space="preserve"><value>Command-line arguments</value></data>
+  <data name="ExtraSettingsLabel" xml:space="preserve"><value>Additional .rdp settings</value></data>
+  <data name="ExtraSettingsHint" xml:space="preserve"><value>One key:type:value per line — supports every .rdp property without dedicated UI (e.g. winposstr, alternate shell). Settings the app manages are ignored here.</value></data>
+  <data name="RdpFilter" xml:space="preserve"><value>RDP Files (*.rdp)</value></data>
+  <data name="ExportedRdpStatus" xml:space="preserve"><value>Exported .rdp file: {0}</value></data>
+  <data name="ExportRdpButton" xml:space="preserve"><value>Export .rdp</value></data>
+  <data name="ShadowSessionButton" xml:space="preserve"><value>Shadow…</value></data>
+  <data name="ShadowSessionTitle" xml:space="preserve"><value>Shadow Session</value></data>
+  <data name="ShadowSessionIdLabel" xml:space="preserve"><value>Session ID on the remote host</value></data>
+  <data name="ShadowSessionIdHint" xml:space="preserve"><value>List sessions with: qwinsta /server:&lt;host&gt;</value></data>
+  <data name="ShadowControlLabel" xml:space="preserve"><value>Take control (otherwise view only)</value></data>
+  <data name="ShadowNoConsentLabel" xml:space="preserve"><value>Don't ask for the user's consent</value></data>
+  <data name="ShadowHint" xml:space="preserve"><value>Consent-free shadowing must be allowed by server policy.</value></data>
+  <data name="ShadowStart" xml:space="preserve"><value>Shadow</value></data>
+  <data name="DetailGatewayLabel" xml:space="preserve"><value>Gateway:</value></data>
+  <data name="DetailRemoteAppLabel" xml:space="preserve"><value>RemoteApp:</value></data>
+  <data name="DetailAdminSessionLabel" xml:space="preserve"><value>Admin session:</value></data>
+  <data name="DetailCertLabel" xml:space="preserve"><value>Cert. failure:</value></data>
+  <data name="ShadowStartedStatus" xml:space="preserve"><value>Shadowing session {0} on {1}</value></data>
+  <data name="HomeTooltip" xml:space="preserve"><value>Home — back to the dashboard</value></data>
+  <data name="LanguageDescription" xml:space="preserve"><value>Interface language. Detected from Windows on first run.</value></data>
+  <data name="Transparency" xml:space="preserve"><value>Window transparency</value></data>
+  <data name="TransparencyOff" xml:space="preserve"><value>Off</value></data>
+  <data name="TransparencyDescription" xml:space="preserve"><value>Frosted glass (Windows acrylic) behind the app. Higher values reveal more of the blurred backdrop.</value></data>
+  <data name="RdpWarningsSection" xml:space="preserve"><value>Windows RDP security warnings</value></data>
+  <data name="RdpWarningsToggle" xml:space="preserve"><value>Suppress Windows RDP warning dialogs</value></data>
+  <data name="RdpWarningsDescription" xml:space="preserve"><value>Turns off the Remote Desktop prompts Windows shows before each connection: the April 2026 redirection/anti-phishing dialog, the launch consent prompt, the unverified-certificate warning, and the per-host local devices prompt for your saved connections.</value></data>
+  <data name="RdpWarningsSecurityNote" xml:space="preserve"><value>These prompts protect you from malicious .rdp files that silently redirect your drives, clipboard and credentials. Only turn this off if every connection you open comes from this app. Original values are saved and fully restored when you turn it back on. The machine-wide part needs administrator approval.</value></data>
+  <data name="RdpWarningsStatusDefault" xml:space="preserve"><value>Status: Windows defaults (all warnings shown)</value></data>
+  <data name="RdpWarningsStatusPatched" xml:space="preserve"><value>Status: warnings suppressed</value></data>
+  <data name="RdpWarningsStatusPartial" xml:space="preserve"><value>Status: partially applied — the machine-wide value still needs administrator approval</value></data>
+  <data name="RdpWarningsElevationDeclined" xml:space="preserve"><value>Administrator approval was declined, so the machine-wide part was not changed. The per-user settings were applied. Try again to complete it.</value></data>
+  <data name="ConfirmDeleteTitle" xml:space="preserve"><value>Delete connection</value></data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve"><value>Permanently delete "{0}"? This also removes its stored credential and cannot be undone.</value></data>
+  <data name="NameRequiredError" xml:space="preserve"><value>Name is required.</value></data>
+  <data name="HostRequiredError" xml:space="preserve"><value>Host is required.</value></data>
+  <data name="CredentialsTab" xml:space="preserve"><value>Credentials</value></data>
+  <data name="DevicesTab" xml:space="preserve"><value>Devices</value></data>
+  <data name="PerformanceSection" xml:space="preserve"><value>Performance</value></data>
+</root>

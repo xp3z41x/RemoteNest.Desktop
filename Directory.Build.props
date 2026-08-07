@@ -1,0 +1,59 @@
+<Project>
+
+  <!-- Identity: flows into the Win32 version resource (Properties -> Details). -->
+  <PropertyGroup>
+    <Product>RemoteNest</Product>
+    <Company>RemoteNest</Company>
+    <Authors>xp3z41x</Authors>
+    <Copyright>Copyright (C) $([System.DateTime]::Now.Year) RemoteNest</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/xp3z41x/RemoteNest.Desktop</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/xp3z41x/RemoteNest.Desktop</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <!-- Single source of the version number. -->
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>$(VersionPrefix).0</FileVersion>
+    <InformationalVersion>$(VersionPrefix)</InformationalVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!-- Ship only the languages the UI actually has. -->
+  <PropertyGroup>
+    <SatelliteResourceLanguages>en;pt-BR</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!-- Single-file publish defaults (the CLI can override).
+       IncludeAllContentForSelfExtract stays OFF: with it, the whole bundle is extracted
+       to %TEMP%\.net on first launch. Without it, managed assemblies are memory-mapped
+       straight from the bundle and only the native libraries are extracted, once. -->
+  <PropertyGroup>
+    <EnableCompressionInSingleFile Condition="'$(EnableCompressionInSingleFile)'==''">false</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract Condition="'$(IncludeNativeLibrariesForSelfExtract)'==''">true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
+  <!-- ReadyToRun pre-compiles assemblies, cutting JIT work out of startup. On the
+       self-contained build it costs ~20 MB for ~95 ms, so it stays off there; on the
+       framework-dependent builds it costs ~2 MB and is worth it. -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)'!='' and '$(SelfContained)'!='true' and '$(PublishReadyToRun)'==''">
+    <PublishReadyToRun>true</PublishReadyToRun>
+  </PropertyGroup>
+
+  <!-- Embedded symbols: antivirus heuristics treat a stripped binary with more suspicion. -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+</Project>
